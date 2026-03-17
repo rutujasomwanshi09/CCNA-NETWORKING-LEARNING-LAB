@@ -1,0 +1,93 @@
+# Lab 01 – Basic Switch Configuration
+
+
+## Configuration Commands
+
+### Enter Privileged Mode
+enable
+
+### Enter Global Configuration Mode
+configure terminal
+
+### Set Hostname
+hostname S1-GTECH
+
+### Set Banner Message
+banner motd #THIS TEST SWITCH#
+
+### Set Enable Password
+enable password cisco
+
+---
+
+## Console Configuration
+line console 0
+password cisco
+login
+exec-timeout 3 0
+logging synchronous
+exit
+
+---
+
+## VTY (Remote Access) Configuration
+line vty 0 15
+password cisco
+login
+exec-timeout 3 0
+logging synchronous
+exit
+
+---
+
+## Disable DNS Lookup
+no ip domain-lookup
+
+### Set Domain Name
+ip domain-name cisco.com
+
+### Create Local User
+username admin password cisco
+
+---
+
+## Encrypt Passwords
+service password-encryption
+
+---
+
+## Set System Clock
+clock set 13:21:30 February 28 2026
+
+---
+
+## VLAN Configuration (Management IP)
+interface vlan 1
+no shutdown
+ip address 192.168.10.254 255.255.255.0
+exit
+
+---
+
+## Set Default Gateway
+ip default-gateway 192.168.10.1
+
+---
+
+## Save Configuration
+copy running-config startup-config
+do sh run
+do wr
+do sh start
+---
+
+## Verification Commands
+
+show running-config  
+show ip interface brief  
+show startup-config  
+
+---
+
+## Result
+The switch is successfully configured with hostname, passwords, banner, management IP, and security settings.
