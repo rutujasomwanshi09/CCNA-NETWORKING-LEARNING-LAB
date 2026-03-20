@@ -7,7 +7,7 @@ To configure VLANs on switches and segment the network into different department
 
 ## 🖧 Topology Overview
 
-- 2 Switches (2960-24TT)
+- 2 Switches (Cisco 2960-24TT)
 - Multiple PCs connected to different VLANs
 - VLANs:
   - VLAN 10 → IT Department (192.168.10.0/24)
