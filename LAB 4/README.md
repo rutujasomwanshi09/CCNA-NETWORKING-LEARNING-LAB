@@ -5,7 +5,7 @@ To configure VLAN Trunking Protocol (VTP) in a multi-switch network to centrally
 
 ---
 
-## 🧠 Theory
+### 🧠 Theory
 
 VTP (VLAN Trunking Protocol) is used to manage VLAN configurations across multiple switches.
 
