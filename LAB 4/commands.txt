@@ -1,0 +1,56 @@
+########## SWITCH 1 (VTP SERVER) ##########
+
+enable
+conf t
+
+vtp mode server
+vtp domain CISCO.COM
+vtp password cisco
+vtp version 2
+
+! Create VLANs
+vlan 10
+name IT
+exit
+
+vlan 20
+name HR
+exit
+
+vlan 30
+name FIR
+exit
+
+vlan 40
+name AD
+exit
+
+vlan 50
+name PRO
+exit
+
+! Configure trunk ports
+interface range fa0/1 - 3
+switchport mode trunk
+exit
+
+do write
+
+-----------------------------------------
+
+########## SWITCH 2 / 3 / 4 (VTP CLIENT) ##########
+
+enable
+conf t
+
+vtp mode client
+vtp domain CISCO.COM
+vtp password cisco
+vtp version 2
+
+! Configure trunk ports
+interface range fa0/1 - 2
+switchport mode trunk
+exit
+
+do write
