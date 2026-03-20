@@ -80,3 +80,4 @@ exit
 
 do wr
 do sh vlan
+## we can see all the vlans
