@@ -1,0 +1,88 @@
+# ⚙️ Configuration Steps
+
+---
+
+## 1️⃣ Create VLANs (On BOTH Switches)
+
+### Switch1 and Switch2 ###
+
+enable
+conf t
+
+vlan 10
+ name IT
+exit
+
+vlan 20
+ name HR
+exit
+
+vlan 30
+ name FIR
+exit
+
+vlan 40
+ name HACKER1
+exit
+
+vlan 50
+ name HACKER2
+exit
+
+check:
+do show vlan 
+
+2️⃣ Assign Access Ports
+🔹 Switch 1
+interface fa0/1
+switchport mode access
+switchport access vlan 10
+
+interface fa0/2
+switchport mode access
+switchport access vlan 20
+
+interface fa0/3
+switchport mode access
+switchport access vlan 30
+
+🔹 Switch 2
+interface fa0/5
+switchport mode access
+switchport access vlan 10
+
+interface fa0/3
+switchport mode access
+switchport access vlan 20
+
+interface fa0/4
+switchport mode access
+switchport access vlan 30
+
+
+🔗 3️⃣ Configure Trunk Links (Fa0/4–5)
+On BOTH switches:
+conf t
+interface range fa0/4-5
+switchport mode trunk
+exit
+check:
+
+show interface trunk
+
+🎯 4️⃣ Allow Specific VLANs on Trunk
+Apply only on trunk interfaces (Fa0/4–5).
+
+On BOTH switches:
+interface range fa0/4-5
+switchport trunk allowed vlan 10,20,30
+
+Result:
+VLAN 10 → Allowed
+VLAN 20 → Allowed
+VLAN 30 → Allowed
+VLAN 40 → Blocked
+VLAN 50 → Blocked
+
+check:
+show interface trunk
