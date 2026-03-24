@@ -1,0 +1,53 @@
+########## ROUTER CONFIG ##########
+
+enable
+conf t
+
+interface g0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+interface g0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+exit
+
+do wr
+
+
+########## SWITCH CONFIG ##########
+
+enable
+conf t
+
+! Assign IP to Switch (Management VLAN)
+interface vlan 1
+ip address 192.168.2.254 255.255.255.0
+no shutdown
+exit
+
+! Default Gateway
+ip default-gateway 192.168.2.1
+
+! Basic Configuration
+hostname SWITCH1
+ip domain-name cisco.com
+
+! Username & Password
+username admin password cisco
+enable password cisco
+
+! VTY Lines for Telnet
+line vty 0 15
+login local
+transport input telnet
+exit
+
+do wr
+
+
+########## TESTING ##########
+
+# From Admin PC (Command Prompt)
+telnet 192.168.2.254
