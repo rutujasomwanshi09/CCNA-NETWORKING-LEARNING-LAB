@@ -1,4 +1,4 @@
-# 🌐 Remote Access using Telnet (Cisco Packet Tracer)
+## 🌐 Remote Access using Telnet (Cisco Packet Tracer)
 
 ## 🎯 Objective
 To configure remote access on a network device using Telnet protocol and allow an admin PC to access the switch remotely.
@@ -42,7 +42,6 @@ To configure remote access on a network device using Telnet protocol and allow a
 - Network device can be controlled remotely
 
 ---
-
 
 ## 🧠 Learning Outcome
 - Remote access configuration
