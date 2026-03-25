@@ -1,0 +1,40 @@
+
+## SWITCH SSH CONFIGURATION
+############################
+
+enable
+
+configure terminal
+
+interface vlan 1
+no shutdown
+ip address 192.168.2.254 255.255.255.0
+exit
+
+ip default-gateway 192.168.2.1
+
+hostname S1
+
+ip domain-name cisco.com
+
+username admin password cisco
+
+enable password cisco
+
+ip ssh version 2
+
+crypto key generate rsa
+1024
+
+line vty 0 15
+login local
+transport input ssh
+exit
+
+do write
+
+############################
+## TEST FROM ADMIN PC
+############################
+
+ssh -l admin 192.168.2.254
