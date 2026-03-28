@@ -1,0 +1,136 @@
+### S1 CONFIG ###
+enable
+conf t
+
+interface range fa0/1-3
+channel-group 1 mode active
+exit
+
+interface port-channel 1
+switchport mode trunk
+exit
+
+do wr
+
+
+########## VERIFICATION ##########
+
+show etherchannel summary
+show interfaces trunk
+-------------------------------------
+
+### S2 CONFIG ###
+enable
+conf t
+
+interface range fa0/1-3
+channel-group 1 mode passive
+exit
+
+interface port-channel 1
+switchport mode trunk
+exit
+
+do wr
+
+-------------------------------------
+### S2 CONFIG ###
+enable
+conf t
+
+interface range fa0/4-6
+channel-group 2 mode active
+exit
+
+interface port-channel 2
+switchport mode trunk
+exit
+
+do wr
+
+--------------------------------------
+
+### MLS1 CONFIG ###
+enable
+conf t
+
+interface range Gig1/0/1-3
+channel-group 2 mode passive
+exit
+
+interface port-channel 2
+switchport mode trunk
+exit
+
+do wr
+
+-----------------------------------------
+
+### MLS1 CONFIG ###
+enable
+conf t
+
+interface range Gig1/0/4-6
+channel-group 3 mode active
+exit
+
+interface port-channel 3
+switchport mode trunk
+exit
+
+do wr
+
+-----------------------------------------
+
+### S3 CONFIG ###
+enable
+conf t
+
+interface range fa0/1-3
+channel-group 3 mode passive
+exit
+
+interface port-channel 3
+switchport mode trunk
+exit
+
+do wr
+
+--------------------------------------------
+
+### S4 CONFIG ###
+enable
+conf t
+
+interface range fa0/4-6
+channel-group 4 mode active
+exit
+
+interface port-channel 4
+switchport mode trunk
+exit
+
+do wr
+
+--------------------------------------------
+
+### S4 CONFIG ###
+enable
+conf t
+
+interface range fa0/1-3
+channel-group 4 mode passive
+exit
+
+interface port-channel 4
+switchport mode trunk
+exit
+
+do wr
+
+--------------------------------------------
+
+########## VERIFICATION ##########
+
+show etherchannel summary
+show interfaces trunk
