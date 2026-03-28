@@ -82,14 +82,6 @@ show interfaces trunk
 
 ---
 
-## 📁 Files Included
-
-* EtherChannel_PAgP.pkt
-* Commands.txt
-* README.md
-
----
-
 ## 📚 Learning Outcomes
 
 After completing this lab, you will understand:
@@ -103,7 +95,7 @@ After completing this lab, you will understand:
 
 ## 👩‍💻 Author
 
-Rutuja
+Rutuja Somwanshi
 BTech CSE (Cyber Security) Student
 Cisco Networking Lab Practice
 
