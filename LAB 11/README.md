@@ -1,7 +1,7 @@
 # EtherChannel Configuration (Manual Mode - ON)
 
 ## 📌 Project Title
-Manual EtherChannel Configuration using ON Mode
+Manual EtherChannel Configuration using ON Mode 
 
 ## 🎯 Objective
 To configure EtherChannel manually using ON mode between multiple switches and verify link aggregation.
@@ -55,3 +55,4 @@ All connections are configured using Manual EtherChannel (ON Mode)
 - Channel Group Configuration
 - Trunk Configuration
 - Verification Commands
+
