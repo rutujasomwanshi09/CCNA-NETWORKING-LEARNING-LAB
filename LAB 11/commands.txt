@@ -1,0 +1,76 @@
+########################
+### SWITCH S1 CONFIG ###
+
+enable
+conf t
+
+int range fa0/4-6
+channel-group 1 mode on
+exit
+
+int port-channel 1
+switchport mode trunk
+exit
+
+int range fa0/1-3
+channel-group 2 mode on
+exit
+
+int port-channel 2
+switchport mode trunk
+exit
+
+do wr
+do show etherchannel
+
+
+########################
+### SWITCH S2 CONFIG ###
+
+enable
+conf t
+
+int range fa0/1-3
+channel-group 2 mode on
+exit
+
+int port-channel 2
+switchport mode trunk
+exit
+
+int range fa0/4-6
+channel-group 3 mode on
+exit
+
+int port-channel 3
+switchport mode trunk
+exit
+
+do wr
+do show etherchannel
+
+
+########################
+### SWITCH S3 CONFIG ###
+
+enable
+conf t
+
+int range fa0/4-6
+channel-group 1 mode on
+exit
+
+int port-channel 1
+switchport mode trunk
+exit
+
+int range fa0/1-3
+channel-group 3 mode on
+exit
+
+int port-channel 3
+switchport mode trunk
+exit
+
+do wr
+do show etherchannel
