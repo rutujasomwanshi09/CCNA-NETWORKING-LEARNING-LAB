@@ -1,0 +1,102 @@
+########################
+### SWITCH 1 CONFIG ###
+
+enable
+conf t
+
+vlan 10
+name IT
+
+vlan 20
+name HR
+
+vlan 30
+name FIN
+
+vlan 999
+name BLACKHOLE
+
+exit
+
+! Assign VLANs
+
+int range fa0/1-3
+switchport mode access
+switchport access vlan 10
+
+int range fa0/4-6
+switchport mode access
+switchport access vlan 20
+
+int range fa0/7-9
+switchport mode access
+switchport access vlan 30
+
+! Secure unused ports
+
+int range fa0/13-24, gig0/1-2
+switchport mode access
+switchport trunk allowed vlan except 999
+shutdown
+
+exit
+
+! Trunk link
+
+int fa0/10-12
+switchport mode trunk
+
+do wr
+do show interface vlan
+
+
+########################
+### SWITCH 2 CONFIG ###
+
+enable
+conf t
+
+vlan 10
+name IT
+
+vlan 20
+name HR
+
+vlan 30
+name FIN
+
+vlan 999
+name BLACKHOLE
+
+exit
+
+! Assign VLANs
+
+int range fa0/10-12
+switchport mode access
+switchport access vlan 10
+
+int range fa0/7-9
+switchport mode access
+switchport access vlan 20
+
+int range fa0/4-6
+switchport mode access
+switchport access vlan 30
+
+! Secure unused ports
+
+int range fa0/13-24 , gig0/1-2
+switchport mode access
+switchport trunk allowed vlan except 999
+shutdown
+
+exit
+
+! Trunk
+
+int fa0/1-3
+switchport mode trunk
+
+do wr
+do show interface vlan
