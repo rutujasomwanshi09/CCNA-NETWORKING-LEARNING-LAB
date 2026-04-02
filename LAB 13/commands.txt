@@ -1,0 +1,39 @@
+configure terminal
+spanning-tree vlan 1 root primary
+interface range fastEthernet 0/1-24
+spanning-tree portfast
+spanning-tree bpduguard enable
+exit
+interface range gigabitEthernet 0/1-2
+spanning-tree guard root
+exit
+exit
+
+configure terminal
+spanning-tree vlan 1 priority 4096
+interface range fastEthernet 0/1-12
+spanning-tree portfast
+spanning-tree bpduguard enable
+exit
+interface gigabitEthernet 0/1
+spanning-tree guard root
+exit
+exit
+
+configure terminal
+spanning-tree vlan 1 priority 8192
+interface range fastEthernet 0/1-12
+spanning-tree portfast
+spanning-tree bpduguard enable
+exit
+interface gigabitEthernet 0/1
+spanning-tree guard root
+exit
+exit
+
+show spanning-tree root
+show spanning-tree interface fastEthernet 0/1 detail
+show spanning-tree summary
+show running-config | include guard root
+show interfaces status
+show errdisable detect
