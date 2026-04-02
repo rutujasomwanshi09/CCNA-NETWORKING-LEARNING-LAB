@@ -15,7 +15,6 @@ name FIN
 
 vlan 999
 name BLACKHOLE
-
 exit
 
 ! Assign VLANs
@@ -67,7 +66,6 @@ name FIN
 
 vlan 999
 name BLACKHOLE
-
 exit
 
 ! Assign VLANs
