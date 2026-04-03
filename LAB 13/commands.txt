@@ -1,39 +1,64 @@
+# STP PORTFAST, BPDU GUARD, ROOT GUARD CONFIGURATION
+
+---
+
+## S0 & S1 Configuration
+
+enable
 configure terminal
-spanning-tree vlan 1 root primary
-interface range fastEthernet 0/1-24
+
+interface range fa0/3-24 , gi0/1-2
+switchport mode access
 spanning-tree portfast
 spanning-tree bpduguard enable
-exit
-interface range gigabitEthernet 0/1-2
-spanning-tree guard root
-exit
+
 exit
 
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+
+---
+
+## Trunk Port Configuration S0,S1,S2
+
+interface range fa0/1-2
+switchport mode trunk
+
+---
+
+## Root Guard Configuration (S2)
+
+enable
 configure terminal
-spanning-tree vlan 1 priority 4096
-interface range fastEthernet 0/1-12
-spanning-tree portfast
-spanning-tree bpduguard enable
-exit
-interface gigabitEthernet 0/1
-spanning-tree guard root
-exit
-exit
 
-configure terminal
-spanning-tree vlan 1 priority 8192
-interface range fastEthernet 0/1-12
-spanning-tree portfast
-spanning-tree bpduguard enable
-exit
-interface gigabitEthernet 0/1
+interface fa0/4
+switchport mode trunk
 spanning-tree guard root
-exit
-exit
 
-show spanning-tree root
-show spanning-tree interface fastEthernet 0/1 detail
+interface fa0/4
+switchport mode trunk
+spanning-tree guard root
+
+do write
+
+---
+
+## Verification Commands
+
 show spanning-tree summary
-show running-config | include guard root
-show interfaces status
-show errdisable detect
+
+show spanning-tree interface fa0/4 portfast
+
+show spanning-tree
+
+---
+
+## Testing
+
+1. Connect new switch
+2. Assign lower priority
+3. Root guard blocks attacker switch
+
+---
+
+## End of Configuration

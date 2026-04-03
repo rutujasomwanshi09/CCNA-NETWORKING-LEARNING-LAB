@@ -1,38 +1,93 @@
-# STP Security Features: PortFast, BPDU Guard, and Root Guard
+# STP Attack Prevention using PortFast, BPDU Guard and Root Guard
 
-## 📌 Overview
-This Cisco Packet Tracer topology demonstrates the configuration and behavior of three essential Spanning Tree Protocol (STP) security mechanisms:
+## 📌 Project Overview
 
-- **PortFast** – Enables rapid transition from blocking to forwarding on access ports.
-- **BPDU Guard** – Disables a port if a BPDU is received (prevents rogue switch connections).
-- **Root Guard** – Prevents unauthorized switches from becoming the root bridge.
+This project demonstrates how to prevent Spanning Tree Protocol (STP) attacks using:
 
-## 🖧 Topology Description
-- **Root Bridge**: Central switch (e.g., `Switch0`)
-- **Non-Root Bridges**: Switches connected to the root bridge
-- **End Devices**: PCs connected to access ports
-- **Key Label in Topology**: `"PORTFAST + ROOTGUARD"` indicates where these features are applied.
+* PortFast
+* BPDU Guard
+* Root Guard
 
-## 🎯 Configuration Goals
-1. Enable **PortFast** on all access ports connected to PCs.
-2. Enable **BPDU Guard** on the same access ports to prevent loop formation.
-3. Enable **Root Guard** on selected ports to protect root bridge position.
+This topology is designed in Cisco Packet Tracer to enhance network security and prevent unauthorized switches from becoming root bridge.
 
-## 🧪 Testing & Validation
-| Feature       | Test Command                          | Expected Result                          |
-|---------------|---------------------------------------|------------------------------------------|
-| PortFast      | `show spanning-tree interface fast 0/1` | `EdgePort` = Yes, `OperEdge` = True      |
-| BPDU Guard    | Connect a switch to access port       | Port enters `err-disable` state          |
-| Root Guard    | `show spanning-tree interface gig 0/1` | Root guard enabled, port blocks superior BPDUs |
+---
 
-## 📁 Files
-- `topology.pkt` – Packet Tracer file
-- `commands.txt` – CLI commands for all switches
-- `README.md` – This file
+## 🎯 Objective
 
-## 🧠 Key Commands Summary
-```cisco
-interface fastEthernet 0/1
- spanning-tree portfast
- spanning-tree bpduguard enable
- spanning-tree guard root
+* Prevent STP attacks
+* Secure access ports
+* Prevent unauthorized root bridge election
+* Improve network stability
+
+---
+
+## 🏗️ Topology Description
+
+The topology contains:
+
+* 1 Root Bridge Switch (S1)
+* 2 Non-Root Switches (S0, S2)
+* 1 New Switch (Attacker Switch with Lower Priority)
+* Multiple PCs connected to access ports
+
+Security features applied:
+
+| Feature    | Purpose                          |
+| ---------- | -------------------------------- |
+| PortFast   | Faster port activation           |
+| BPDU Guard | Disable port if BPDU received    |
+| Root Guard | Prevent unauthorized root bridge |
+
+---
+
+## 🔐 Security Implementation
+
+### PortFast + BPDU Guard
+
+Applied on access ports connected to end devices.
+
+### Root Guard
+
+Applied on trunk ports to prevent rogue switch.
+
+---
+
+## 🧪 Testing Scenario
+
+* New switch added with lower priority
+* Root Guard prevents it from becoming root
+* BPDU Guard disables unauthorized connections
+
+---
+
+## ✅ Expected Result
+
+* Root bridge remains unchanged
+* Unauthorized switch blocked
+* Network remains stable
+
+---
+
+## 🛠️ Tools Used
+
+* Cisco Packet Tracer
+* STP Protocol
+* Cisco Switches (2960)
+
+---
+
+## 📚 Learning Outcomes
+
+* STP security concepts
+* Attack prevention techniques
+* Switch security configuration
+* Real-world network protection
+
+---
+
+## 👩‍💻 Author
+
+Cyber Security Student
+STP Attack Prevention Project
+
+---
