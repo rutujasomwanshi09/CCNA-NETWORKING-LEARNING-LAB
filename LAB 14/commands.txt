@@ -1,0 +1,103 @@
+# VLAN HOPPING ATTACK PREVENTION CONFIGURATION
+
+---
+
+## S1 Configuration
+
+enable
+conf t
+
+vlan 10
+name IT
+exit
+
+vlan 33
+name NATIVE
+exit
+
+interface range fa0/5-24 , gi0/1-2
+switchport mode access
+switchport access vlan 10
+switchport nonegotiate
+exit
+
+interface range fa0/1-4
+switchport mode trunk
+switchport trunk native vlan 33
+switchport nonegotiate
+exit
+
+no cdp run
+do wr
+
+---
+
+## S2 Configuration
+
+enable
+conf t
+
+vlan 20
+name HR
+exit
+
+vlan 33
+name NATIVE
+exit
+
+interface range fa0/5-24 , gi0/1-2
+switchport mode access
+switchport access vlan 20
+switchport nonegotiate
+exit
+
+interface range fa0/1-4
+switchport mode trunk
+switchport trunk native vlan 33
+switchport nonegotiate
+exit
+
+no cdp run
+do wr
+
+---
+
+## S3 Configuration
+
+enable
+conf t
+
+vlan 30
+name FIN
+exit
+
+vlan 33
+name NATIVE
+exit
+
+interface range fa0/5-24 , gi0/1-2
+switchport mode access
+switchport access vlan 30
+switchport nonegotiate
+exit
+
+interface range fa0/1-4
+switchport mode trunk
+switchport trunk native vlan 33
+switchport nonegotiate
+exit
+
+no cdp run
+do wr
+
+---
+
+## Verification Commands
+
+show vlan brief
+show interfaces trunk
+show running-config
+
+---
+
+End of Configuration
