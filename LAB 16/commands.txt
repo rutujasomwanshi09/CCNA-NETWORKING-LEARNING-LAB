@@ -1,0 +1,91 @@
+
+######## ROUTER CONFIGURATION #########
+
+enable
+conf t
+
+interface g0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+
+exit
+write memory
+
+##################
+SWITCH CONFIGURATION
+#################
+
+enable
+conf t
+
+---
+
+## DHCP SNOOPING
+
+ip dhcp snooping
+ip dhcp snooping vlan 1
+
+interface range fa0/1-2
+ip dhcp snooping trust
+exit
+
+---
+
+## DAI CONFIGURATION
+
+ip arp inspection vlan 1
+
+interface range fa0/1-2
+ip arp inspection trust
+exit
+
+---
+
+## IP SOURCE GUARD
+
+interface range fa0/3-6
+ip verify source
+exit
+
+---
+
+## SAVE CONFIG
+
+do write memory
+
+############################
+LEGITIMATE DHCP SERVER
+############################
+
+IP ADDRESS : 192.168.1.100
+SUBNET MASK : 255.255.255.0
+DEFAULT GATEWAY : 192.168.1.1
+DNS SERVER : 0.0.0.0
+
+DHCP SETTINGS
+
+POOL NAME : TESTPOOL
+DEFAULT ROUTER : 192.168.1.1
+START IP : 192.168.1.10
+DNS SERVER : 0.0.0.0
+
+############################
+FAKE DHCP SERVER
+
+IP ADDRESS : 192.168.1.110
+SUBNET MASK : 255.255.255.0
+DEFAULT GATEWAY : 192.168.1.1
+DNS SERVER : 0.0.0.0
+
+############################
+VERIFICATION COMMANDS
+############################
+
+show ip dhcp snooping
+show ip arp inspection
+show ip verify source
+show ip dhcp snooping binding
+
+############################
+END
+############################
