@@ -1,0 +1,65 @@
+############################
+SWITCH CONFIGURATION
+############################
+
+enable
+conf t
+
+---
+
+## PORT SECURITY (FA0/1-2)
+
+interface range fa0/1-2
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+exit
+
+---
+
+## PORT SECURITY (FA0/3-4)
+
+interface range fa0/3-4
+switchport mode access
+switchport port-security
+switchport port-security maximum 2
+switchport port-security mac-address sticky
+switchport port-security violation restrict
+exit
+
+---
+
+## PORT SECURITY (FA0/5)
+
+interface fa0/5
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address 000D.BDA6.8D00
+switchport port-security violation protect
+exit
+
+---
+
+## SAVE CONFIG
+
+do wr
+
+---
+
+## VERIFICATION
+
+show port-security
+show port-security interface fa0/1
+show mac-address-table
+
+CHECK :
+FROM PC4 : PING 192.168.1.1  -----(IT'S PINGING)
+FROM HACKER-PC : PING 192.168.1.1 ------(IT'S NOT ABLE TO CONNECT..IT'S BLOCK THE CONNECTION
+OF UNAUTHORIZED PC)
+
+##########################
+END
+##########################
