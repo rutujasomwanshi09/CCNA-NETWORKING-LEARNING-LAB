@@ -1,0 +1,72 @@
+############################
+SWITCH CONFIGURATION
+############################
+
+enable
+conf t
+
+---
+
+## VLAN INTERFACE CONFIG
+
+interface vlan 1
+ip address 192.168.2.254 255.255.255.0
+no shutdown
+exit
+
+ip default-gateway 192.168.2.1
+
+---
+
+## SSH CONFIGURATION
+
+hostname TEST-SSH
+
+enable password cisco
+
+ip domain-name cisco.com
+
+username cisco password cisco
+
+crypto key generate rsa
+1024
+
+ip ssh version 2
+
+---
+
+## VTY LINE CONFIG
+
+line vty 0 15
+login local
+transport input ssh
+exit
+
+---
+
+## ACL CONFIGURATION
+
+access-list 10 permit host 192.168.1.5
+access-list 10 deny any
+
+line vty 0 15
+access-class 10 in
+exit
+
+---
+
+## SAVE CONFIG
+
+do write memory
+
+---
+
+## VERIFICATION
+
+show ip ssh
+show access-lists
+show running-config
+
+############################
+END
+############################
