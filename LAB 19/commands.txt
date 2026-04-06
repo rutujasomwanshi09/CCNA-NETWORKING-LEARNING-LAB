@@ -1,0 +1,100 @@
+############# ROUTER CONFIGURATION ###########
+
+enable
+configure terminal
+
+---
+
+INTERFACE G0/0
+
+interface gig0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+---
+
+INTERFACE G0/1
+
+interface gig0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+exit
+
+---
+
+SAVE CONFIG
+
+do write memory
+
+########################
+MULTILAYER SWITCH 0 CONFIGURATION COMMANDS
+########################
+
+enable
+configure terminal
+
+---
+
+ENABLE LAYER 3 ROUTING
+
+ip routing
+
+---
+
+CONFIGURE INTERFACE
+
+interface gig1/0/1
+no switchport
+ip address 192.168.1.2 255.255.255.0
+no shutdown
+exit
+
+---
+
+SAVE CONFIG
+
+do write memory
+
+############################
+MULTILAYER SWITCH 1 CONFIGURATION COMMANDS
+############################
+
+enable
+configure terminal
+
+---
+
+ENABLE LAYER 3 ROUTING
+
+ip routing
+
+---
+
+CONFIGURE INTERFACE
+
+interface gig1/0/1
+no switchport
+ip address 192.168.2.2 255.255.255.0
+no shutdown
+exit
+
+---
+
+SAVE CONFIG
+
+do write memory
+
+########################
+VERIFICATION COMMANDS
+########################
+
+FROM MULTILAYER SWITCH S0 & S1
+ping 192.168.1.1
+ping 192.168.2.1
+show ip route
+show ip interface brief
+
+############################
+END
+############################
