@@ -117,10 +117,3 @@ After completing this lab you will understand:
 
 ---
 
-## 👨‍💻 Author
-
-Rutuja
-CCNA Lab Practice
-Cyber Security Learning Path
-
----
