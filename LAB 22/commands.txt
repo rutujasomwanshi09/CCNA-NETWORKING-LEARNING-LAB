@@ -1,0 +1,50 @@
+# TELNET CONFIGURATION ON ROUTER (R1)
+
+enable
+configure terminal
+
+# Configure Router Interface
+
+interface g0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+# Configure Hostname
+
+hostname R1-TELNET
+
+# Configure Enable Password
+
+enable password cisco
+
+# Configure Domain Name
+
+ip domain-name cisco.com
+
+# Create User
+
+username admin password cisco
+
+# Configure VTY Lines for Telnet
+
+line vty 0 15
+login local
+transport input telnet
+exit
+
+# Save Configuration
+
+end
+write memory
+
+
+####### VERIFICATION ###########
+
+
+show ip interface brief
+show running-config
+
+##### TEST FROM PC ######
+telnet 192.168.1.1
+
