@@ -1,4 +1,4 @@
-# Connecting Multiple Networks Using Router
+## Connecting Multiple Networks Using A Router
 
 ## 📌 Project Overview
 This lab demonstrates how to connect multiple networks using a router in Cisco Packet Tracer. 
@@ -22,7 +22,7 @@ Network 2:
 - Default Gateway: 192.168.2.1
 - Devices: PC2, PC3
 
-Router:
+Router IP:
 - Interface G0/0 → 192.168.1.1
 - Interface G0/1 → 192.168.2.1
 
@@ -36,7 +36,7 @@ Router:
 ## 🧪 Testing
 
 Use ping command:
-- from pc0 to pc2
+- FROM PC0 TO PC2
 PING 192.168.2.5
 PING 192.168.2.6
 
