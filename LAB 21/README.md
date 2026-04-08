@@ -37,7 +37,7 @@ Router IP:
 
 Use ping command:
 - FROM PC0 TO PC2
-PING 192.168.2.5
+PING 192.168.2.5 
 PING 192.168.2.6
 
 
