@@ -1,0 +1,33 @@
+#### ROUTER CONFIGURATION COMMANDS ####
+
+enable
+configure terminal
+
+hostname R1-SSH
+
+interface gig0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+
+enable password cisco
+
+ip domain-name cisco.com
+
+username admin password cisco
+
+crypto key generate rsa
+1024
+
+line vty 0 15
+login local
+transport input ssh
+exit
+
+ip ssh version 2
+
+end
+write memory
+
+## verification command ##
+ssh -l admin(username) 192.168.10.1
