@@ -45,19 +45,19 @@ Three Departments:
 
 * PC0 → 192.168.10.2
 * PC1 → 192.168.10.3
-* Gateway → 192.168.10.1
+* Default Gateway → 192.168.10.1
 
 ### VLAN 20 - HR
 
 * PC2 → 192.168.20.2
 * PC3 → 192.168.20.3
-* Gateway → 192.168.20.1
+* Default Gateway → 192.168.20.1
 
 ### VLAN 30 - FIN
 
 * PC4 → 192.168.30.2
 * PC5 → 192.168.30.3
-* Gateway → 192.168.30.1
+* Default Gateway → 192.168.30.1
 
 ---
 
@@ -97,19 +97,11 @@ ping 192.168.30.2
 
 If successful, Inter-VLAN routing working properly.
 
----
-
-## 📂 Project Files
-
-* README.md
-* commands.txt
-* topology.pkt
-
----
+------------------------------------------------------------
 
 ## 👨‍💻 Author
 
 Network Lab Practice
 Inter-VLAN Routing using Multilayer Switch
 
----
+---------------------------------------------------------------------
