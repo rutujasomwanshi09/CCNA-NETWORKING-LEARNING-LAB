@@ -1,3 +1,4 @@
+## STEP 1:
 # Multilayer Switch Configuration
 
 enable
@@ -53,6 +54,7 @@ write memory
 
 ---
 
+## STEP 2:
 # Access Switch Configuration
 
 enable
