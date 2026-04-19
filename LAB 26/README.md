@@ -50,17 +50,8 @@ The topology consists of:
 
 Test Connectivity:
 
-ping 192.168.1.x
-ping 192.168.2.x
+ping 192.168.1.11
+ping 192.168.2.11
 
-## 📁 Files Included
 
-* DHCP_Server_Topology.pkt
-* README.md
-* Commands.txt
 
-## 👩‍💻 Author
-
-Rutuja
-BTech Student
-Cyber Security & Networking Learner
