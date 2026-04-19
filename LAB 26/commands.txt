@@ -1,0 +1,45 @@
+# Router DHCP Configuration Commands
+
+enable
+configure terminal
+
+# Interface Configuration
+
+interface gig0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+interface gig0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+exit
+
+# Enable DHCP Service
+
+service dhcp
+
+# IT Department DHCP Pool
+
+ip dhcp pool IT-DEPT
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 192.168.1.1
+exit
+
+# HR Department DHCP Pool
+
+ip dhcp pool HR-DEPT
+network 192.168.2.0 255.255.255.0
+default-router 192.168.2.1
+dns-server 192.168.2.1
+exit
+
+# Excluded Addresses
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp excluded-address 192.168.2.1 192.168.2.10
+
+# Save Configuration
+
+do write memory
