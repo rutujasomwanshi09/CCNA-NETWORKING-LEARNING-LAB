@@ -65,18 +65,4 @@ Ping Between Networks:
 ping 192.168.10.x
 ping 192.168.20.x
 
----
-
-## 📁 Files Included
-
-* Multilayer_DHCP_Topology.pkt
-* Commands.txt
-* README.md
-
----
-
-## 👩‍💻 Author
-
-Rutuja
-BTech Student
-Cyber Security & Networking Learner
+-------------------------------
