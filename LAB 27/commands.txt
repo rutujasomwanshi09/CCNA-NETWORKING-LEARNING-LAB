@@ -1,0 +1,55 @@
+# Multilayer Switch DHCP Configuration
+
+enable
+configure terminal
+
+# Convert Ports to Layer 3
+
+interface range gig1/0/1-2
+no switchport
+exit
+
+# Assign IP Addresses
+
+interface gig1/0/1
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+
+interface gig1/0/2
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+exit
+
+# Enable Routing
+
+ip routing
+
+# Enable DHCP
+
+service dhcp
+
+# IT Department DHCP Pool
+
+ip dhcp pool IT-POOL
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+dns-server 192.168.10.1
+exit
+
+# FIN Department DHCP Pool
+
+ip dhcp pool FIN-POOL
+network 192.168.20.0 255.255.255.0
+default-router 192.168.20.1
+dns-server 192.168.20.1
+exit
+
+# Excluded IP
+
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+ip dhcp excluded-address 192.168.20.1 192.168.20.10
+
+# Save Configuration
+
+do write memory
