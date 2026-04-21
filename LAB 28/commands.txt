@@ -1,6 +1,4 @@
-#############
-SWITCH S1
-#############
+### SWITCH S1 configuration cmd ###
 
 enable
 conf t
@@ -17,9 +15,9 @@ switchport mode trunk
 
 do wr
 
-#############
-SWITCH S2
-#############
+############
+
+### SWITCH S2 CONFIGURATION CMD ###
 
 enable
 conf t
@@ -37,8 +35,7 @@ switchport mode trunk
 do wr
 
 #############
-SWITCH S3
-#############
+### SWITCH S3 CONFIGURATION CMD ###
 
 enable
 conf t
@@ -56,8 +53,7 @@ switchport mode trunk
 do wr
 
 #############
-MULTILAYER SWITCH
-#############
+### MULTILAYER SWITCH CONFIGURATION CMD ###
 
 enable
 conf t
@@ -72,8 +68,7 @@ switchport mode trunk
 do wr
 
 #############
-ROUTER CONFIG
-#############
+### ROUTER CONFIGURATION CMD ###
 
 enable
 conf t
