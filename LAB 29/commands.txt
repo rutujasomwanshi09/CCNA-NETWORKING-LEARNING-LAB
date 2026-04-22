@@ -1,0 +1,117 @@
+# STEP 1 : SWITCH S1
+
+enable
+configure terminal
+
+vlan 10
+name IT
+exit
+
+interface range fa0/2-24
+switchport mode access
+switchport access vlan 10
+exit
+
+interface fa0/1
+switchport mode trunk
+exit
+
+# STEP 2 : SWITCH S2
+
+enable
+configure terminal
+
+vlan 20
+name HR
+exit
+
+interface range fa0/2-24
+switchport mode access
+switchport access vlan 20
+exit
+
+interface fa0/1
+switchport mode trunk
+exit
+
+# STEP 3 : SWITCH S3
+
+enable
+configure terminal
+
+vlan 30
+name FIN
+exit
+
+interface range fa0/2-24
+switchport mode access
+switchport access vlan 30
+exit
+
+interface fa0/1
+switchport mode trunk
+exit
+
+# STEP 4 : MULTILAYER SWITCH
+
+enable
+configure terminal
+
+vlan 10
+name IT
+exit
+
+vlan 20
+name HR
+exit
+
+vlan 30
+name FIN
+exit
+
+interface range g1/0/1-3
+switchport mode trunk
+exit
+
+ip routing
+
+interface vlan 10
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+interface vlan 20
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+exit
+
+interface vlan 30
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+exit
+
+# DHCP CONFIGURATION
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp excluded-address 192.168.2.1 192.168.2.10
+ip dhcp excluded-address 192.168.3.1 192.168.3.10
+
+ip dhcp pool IT-POOL
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 192.168.1.1
+exit
+
+ip dhcp pool HR-POOL
+network 192.168.2.0 255.255.255.0
+default-router 192.168.2.1
+dns-server 192.168.2.1
+exit
+
+ip dhcp pool FIN-POOL
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.1
+dns-server 192.168.3.1
+exit
+
+do write
