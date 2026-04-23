@@ -1,0 +1,71 @@
+########################
+ROUTER CONFIGURATION
+########################
+
+enable
+conf t
+
+interface g0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+
+exit
+do wr
+
+########################
+SWITCH CONFIG (BASIC)
+########################
+
+enable
+conf t
+
+interface range fa0/1-24
+switchport mode access
+
+exit
+do wr
+
+########################
+DHCP SERVER CONFIG (GUI)
+########################
+
+IP Address: 192.168.10.5
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+Service: DHCP → ON
+
+Pool Name: OFFICE-LAN
+Default Gateway: 192.168.10.1
+DNS Server: 192.168.10.6
+Start IP: 192.168.10.11
+Subnet Mask: 255.255.255.0
+Maximum Users: 100
+
+########################
+DNS SERVER CONFIG (GUI)
+########################
+
+IP Address: 192.168.10.6
+
+Service: DNS → ON
+
+Add Record:
+Name: cisco.com
+Address: 192.168.10.7
+
+########################
+WEB SERVER CONFIG (GUI)
+########################
+
+IP Address: 192.168.10.7
+
+Service: HTTP → ON
+
+(Optional: Edit index.html page)
+
+########################
+PC CONFIG
+########################
+
+Desktop → IP Configuration → DHCP
