@@ -1,0 +1,90 @@
+#############################
+# ASA BASIC CONFIGURATION
+#############################
+
+enable
+configure terminal
+
+hostname FW
+
+enable password cisco
+
+username admin password cisco
+
+#############################
+# INSIDE INTERFACE
+#############################
+
+interface gig1/1
+no shutdown
+ip address 192.168.100.1 255.255.255.0
+nameif INSIDE
+security-level 100
+exit
+
+#############################
+# OUTSIDE INTERFACE
+#############################
+
+interface gig1/2
+no shutdown
+ip address 20.20.20.1 255.255.255.0
+nameif OUTSIDE
+security-level 0
+exit
+
+#############################
+# DMZ INTERFACE
+#############################
+
+interface gig1/3
+no shutdown
+ip address 10.10.10.1 255.255.255.240
+nameif DMZ
+security-level 70
+exit
+
+#############################
+# DHCP CONFIGURATION
+#############################
+
+dhcpd address 192.168.100.100-192.168.100.200 INSIDE
+
+dhcpd dns 8.8.8.8
+
+dhcpd enable INSIDE
+
+write memory
+
+#############################
+# SSH CONFIGURATION
+#############################
+
+aaa authentication ssh console LOCAL
+
+crypto key generate rsa modulus 1024
+
+ssh 192.168.100.0 255.255.255.0 INSIDE
+
+ssh timeout 3
+
+write memory
+
+#############################
+# VERIFICATION COMMANDS
+#############################
+
+show running-config
+
+show dhcpd binding
+
+show ssh
+
+#############################
+# SSH LOGIN FROM PC
+#############################
+
+ssh -l admin 192.168.100.1
+
+Password:
+cisco
