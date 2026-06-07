@@ -14,7 +14,7 @@ The ASA firewall provides:
 - User Authentication
 - Network Segmentation
 
----
+------------------------------------------------------
 
 ## Network Information
 
@@ -33,7 +33,7 @@ Network: 20.20.20.0/24
 Gateway: 20.20.20.1
 Security Level: 0
 
----
+----------------------------------------------------
 
 ## Devices Used
 
@@ -45,7 +45,7 @@ Security Level: 0
 - DHCP Server
 - Email Server
 
----
+-----------------------------------------------------------
 
 ## Features Implemented
 
@@ -66,7 +66,7 @@ Security Level: 0
 - Secure Remote Access
 - Local Authentication
 
----
+------------------------------------------------
 
 ## Verification
 
@@ -82,18 +82,18 @@ show running-config
 SSH Login:
 ssh -l admin 192.168.100.1
 
----
+---------------------------------------------------
 
-## Expected Output
+## Expected Output ##
 
 - PCs obtain IP addresses automatically.
 - SSH login to ASA firewall works successfully.
 - DMZ and Outside networks remain logically separated.
 - Firewall security levels control traffic flow.
 
----
+--------------------------------------------------------
 
-## Learning Outcomes
+## Learning Outcomes ##
 
 - Cisco ASA Interface Configuration
 - DHCP Server Configuration on ASA
