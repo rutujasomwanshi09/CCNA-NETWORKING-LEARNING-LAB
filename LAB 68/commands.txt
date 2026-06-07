@@ -1,0 +1,101 @@
+#######################################
+# STEP 1 : ASA BASIC CONFIGURATION
+#######################################
+
+enable
+
+configure terminal
+
+hostname FW
+
+#######################################
+# INSIDE INTERFACE
+#######################################
+
+interface gigabitEthernet1/1
+
+no shutdown
+
+ip address 192.168.100.1 255.255.255.0
+
+nameif INSIDE
+
+security-level 100
+
+exit
+
+#######################################
+# OUTSIDE INTERFACE
+#######################################
+
+interface gigabitEthernet1/2
+
+no shutdown
+
+ip address 20.20.20.1 255.255.255.0
+
+nameif OUTSIDE
+
+security-level 0
+
+exit
+
+#######################################
+# DMZ INTERFACE
+#######################################
+
+interface gigabitEthernet1/3
+
+no shutdown
+
+ip address 10.10.10.1 255.255.255.240
+
+nameif DMZ
+
+security-level 70
+
+exit
+
+#######################################
+# SAVE CONFIGURATION
+#######################################
+
+write memory
+
+#######################################
+# STEP 2 : DHCP CONFIGURATION
+#######################################
+
+dhcpd address 192.168.100.101-192.168.100.199 INSIDE
+
+dhcpd dns 8.8.8.8
+
+dhcpd enable INSIDE
+
+#######################################
+# SAVE CONFIGURATION
+#######################################
+
+write memory
+
+#######################################
+# VERIFICATION COMMANDS
+#######################################
+
+show running-config
+
+show interface ip brief
+
+show dhcpd binding
+
+show dhcpd state
+
+#######################################
+# CLIENT VERIFICATION
+#######################################
+
+# On PC
+
+ipconfig
+
+ping 192.168.100.1
