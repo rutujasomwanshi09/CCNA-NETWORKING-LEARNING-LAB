@@ -1,0 +1,118 @@
+################################################
+# ASA FIREWALL CONFIGURATION
+################################################
+
+enable
+configure terminal
+
+hostname FW
+
+enable password cisco
+
+username admin password cisco
+
+!
+! INSIDE INTERFACE
+!
+interface gig1/1
+no shutdown
+nameif INSIDE
+security-level 100
+ip address 10.10.10.1 255.255.255.252
+exit
+
+!
+! OUTSIDE INTERFACE
+!
+interface gig1/2
+no shutdown
+nameif OUTSIDE
+security-level 0
+ip address 20.20.20.1 255.255.255.252
+exit
+
+!
+! DMZ INTERFACE
+!
+interface gig1/3
+no shutdown
+nameif DMZ
+security-level 70
+ip address 172.16.10.1 255.255.255.240
+exit
+
+write memory
+
+################################################
+# ASA OSPF CONFIGURATION
+################################################
+
+router ospf 50
+
+network 172.16.10.0 255.255.255.240 area 0
+
+network 20.20.20.0 255.255.255.252 area 0
+
+network 10.10.10.0 255.255.255.252 area 0
+
+exit
+
+write memory
+
+################################################
+# ASA STATIC DEFAULT ROUTE
+################################################
+
+route OUTSIDE 0.0.0.0 0.0.0.0 20.20.20.2
+
+write memory
+
+################################################
+# ROUTER 1 CONFIGURATION
+################################################
+
+enable
+configure terminal
+
+router ospf 50
+
+network 192.168.100.0 0.0.0.255 area 0
+
+network 10.10.10.0 0.0.0.3 area 0
+
+exit
+
+do write
+
+################################################
+# ROUTER 2 CONFIGURATION
+################################################
+
+enable
+configure terminal
+
+router ospf 50
+
+network 8.8.8.0 0.0.0.255 area 0
+
+network 20.20.20.0 0.0.0.3 area 0
+
+exit
+
+do write
+
+################################################
+# VERIFICATION COMMANDS
+################################################
+
+show route
+
+show ospf
+
+show ip route
+
+show ip ospf neighbor
+
+show ip protocols
+
+show running-config
