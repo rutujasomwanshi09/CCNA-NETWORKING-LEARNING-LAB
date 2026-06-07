@@ -1,0 +1,106 @@
+
+##### STEP 1 : BASIC ASA CONFIGURATION ####
+
+enable
+
+configure terminal
+
+hostname PERIMETER-FW
+
+enable password cisco
+
+username admin password cisco
+
+clock set 19:55:30 10 APRIL 2026
+
+########################
+# INSIDE INTERFACE
+########################
+
+interface gigabitEthernet1/1
+
+no shutdown
+
+ip address 192.168.100.1 255.255.255.0
+
+nameif INSIDE
+
+security-level 100
+
+exit
+
+##############################
+# DMZ INTERFACE
+##############################
+
+interface gigabitEthernet1/2
+
+no shutdown
+
+ip address 10.10.10.1 255.255.255.240
+
+nameif DMZ
+
+security-level 70
+
+exit
+
+#############################
+# OUTSIDE INTERFACE
+#############################
+
+interface gigabitEthernet1/3
+
+no shutdown
+
+ip address 20.20.20.1 255.255.255.0
+
+nameif OUTSIDE
+
+security-level 0
+
+exit
+
+#############################
+# SAVE CONFIGURATION
+#############################
+
+write memory
+
+#################################
+# STEP 2 : SSH CONFIGURATION
+#################################
+
+aaa authentication ssh console LOCAL
+
+crypto key generate rsa modulus 1024
+
+ssh 192.168.100.0 255.255.255.0 INSIDE
+
+ssh timeout 3
+
+write memory
+
+#########################################
+# VERIFICATION COMMANDS
+#########################################
+
+show running-config
+
+show interface ip brief
+
+show ssh
+
+show version
+
+show aaa-server
+
+show route
+
+show access-list
+
+#############################
+# TEST SSH
+############################
+
+ssh -l admin 192.168.100.1
