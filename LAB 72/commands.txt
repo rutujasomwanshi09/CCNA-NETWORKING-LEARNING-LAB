@@ -1,0 +1,202 @@
+################################################
+# STEP 1 : ASA BASIC CONFIGURATION
+################################################
+
+enable
+configure terminal
+
+hostname FW
+
+enable password cisco
+
+username admin password cisco
+
+!
+! INSIDE INTERFACE
+!
+interface gig1/1
+no shutdown
+nameif INSIDE
+security-level 100
+ip address 10.10.10.1 255.255.255.252
+exit
+
+!
+! OUTSIDE INTERFACE
+!
+interface gig1/2
+no shutdown
+nameif OUTSIDE
+security-level 0
+ip address 20.20.20.1 255.255.255.252
+exit
+
+!
+! DMZ INTERFACE
+!
+interface gig1/3
+no shutdown
+nameif DMZ
+security-level 60
+ip address 172.16.10.1 255.255.255.240
+exit
+
+write memory
+
+################################################
+# STEP 2 : ROUTER 1 OSPF
+################################################
+
+enable
+configure terminal
+
+router ospf 50
+
+network 192.168.100.0 0.0.0.255 area 0
+
+network 10.10.10.0 0.0.0.3 area 0
+
+exit
+
+do write
+
+################################################
+# STEP 3 : ROUTER 2 OSPF
+################################################
+
+enable
+configure terminal
+
+router ospf 50
+
+network 8.8.8.0 0.0.0.255 area 0
+
+network 20.20.20.0 0.0.0.3 area 0
+
+exit
+
+do write
+
+################################################
+# STEP 4 : ASA OSPF CONFIGURATION
+################################################
+
+router ospf 50
+
+network 172.16.10.0 255.255.255.240 area 0
+
+network 20.20.20.0 255.255.255.252 area 0
+
+network 10.10.10.0 255.255.255.252 area 0
+
+exit
+
+route OUTSIDE 0.0.0.0 0.0.0.0 20.20.20.2
+
+write memory
+
+################################################
+# STEP 5 : NAT CONFIGURATION
+################################################
+
+object network INSIDE-OUT
+
+subnet 192.168.100.0 255.255.255.0
+
+nat (INSIDE,OUTSIDE) dynamic interface
+
+exit
+
+object network DMZ-OUT
+
+subnet 172.16.10.0 255.255.255.240
+
+nat (DMZ,OUTSIDE) dynamic interface
+
+exit
+
+write memory
+
+################################################
+# STEP 6 : ADVANCED ACL CONFIGURATION
+################################################
+
+!
+! DHCP ACCESS
+!
+
+access-list DMZ-ACCESS extended permit udp \
+host 192.168.100.2 eq 68 \
+host 172.16.10.10 eq 67
+
+access-list DMZ-ACCESS extended permit udp \
+host 192.168.100.2 eq 67 \
+host 172.16.10.10 eq 68
+
+!
+! DNS ACCESS
+!
+
+access-list DMZ-ACCESS extended permit tcp \
+host 192.168.100.15 \
+host 172.16.10.7 eq 53
+
+access-list DMZ-ACCESS extended permit udp \
+host 192.168.100.15 \
+host 172.16.10.7 eq 53
+
+!
+! WEB ACCESS
+!
+
+access-list DMZ-ACCESS extended permit tcp \
+host 192.168.100.15 \
+host 172.16.10.9 eq 80
+
+access-group DMZ-ACCESS in interface DMZ
+
+################################################
+# STEP 7 : INTERNET ACCESS ACL
+################################################
+
+access-list INTERNET-ACCESS extended permit icmp \
+192.168.100.0 255.255.255.0 \
+host 8.8.8.8
+
+access-list INTERNET-ACCESS extended permit tcp \
+192.168.100.0 255.255.255.0 \
+host 8.8.8.8 eq 80
+
+access-list INTERNET-ACCESS extended permit tcp \
+192.168.100.0 255.255.255.0 \
+host 8.8.8.8 eq 443
+
+access-list INTERNET-ACCESS extended permit tcp \
+192.168.100.0 255.255.255.0 \
+host 8.8.8.8 eq 53
+
+access-list INTERNET-ACCESS extended permit udp \
+192.168.100.0 255.255.255.0 \
+host 8.8.8.8 eq 53
+
+access-group INTERNET-ACCESS in interface OUTSIDE
+
+write memory
+
+################################################
+# VERIFICATION
+################################################
+
+show route
+
+show ospf
+
+show nat
+
+show xlate
+
+show access-list
+
+ping 8.8.8.8
+
+tracert 8.8.8.8
