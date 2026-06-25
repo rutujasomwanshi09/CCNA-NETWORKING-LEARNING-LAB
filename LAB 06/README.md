@@ -13,7 +13,7 @@ To configure VLANs and implement 802.1Q trunking with a native VLAN between two 
   - VLAN 20 → HR
   - VLAN 99 → Native VLAN
 
----
+----
 
 ## ⚙️ Configuration Summary
 - VLAN 10 and VLAN 20 created for users
