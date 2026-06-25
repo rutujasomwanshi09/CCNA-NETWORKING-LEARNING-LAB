@@ -15,7 +15,7 @@ To configure VLANs on switches and segment the network into different department
   - VLAN 30 → FIR Department (192.168.30.0/24)
 - Trunk link between switches
 
----
+------------------------------------------------------------
 
 ## 🛠️ Devices Used
 
