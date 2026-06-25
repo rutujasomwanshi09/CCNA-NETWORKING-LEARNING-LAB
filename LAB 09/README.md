@@ -11,7 +11,7 @@ This topology includes:
 * 2 Access Switches (S1 & S2)
 * PAgP based EtherChannel configuration
 
----
+----
 
 ## 🖥️ Topology
 
