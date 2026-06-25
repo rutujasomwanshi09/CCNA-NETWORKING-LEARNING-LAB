@@ -15,7 +15,7 @@ vlan 30
 name FIR
 exit
 
-# Assign ports to VLANs
+## Assign ports to VLANs
 interface range fa0/1-2
 switchport mode access
 switchport access vlan 10
