@@ -1,6 +1,6 @@
 # ⚙️ Configuration Steps
 
----
+----
 
 ## 1️⃣ Create VLANs (On BOTH Switches)
 
