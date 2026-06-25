@@ -16,7 +16,7 @@ exit
 do wr
 
 
-########## SWITCH CONFIG ##########
+########## SWITCH CONFIG #########
 
 enable
 conf t
