@@ -19,7 +19,7 @@ This lab demonstrates the basic configuration of a router using Cisco Packet Tra
 - PC (PC-PT)
 - Ethernet Cable
 
----
+------------------------------------
 
 ## ⚙️ Configuration Tasks
 - Set hostname
