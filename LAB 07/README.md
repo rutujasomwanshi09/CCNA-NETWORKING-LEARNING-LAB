@@ -15,7 +15,7 @@ To configure remote access on a network device using Telnet protocol and allow a
 - Admin Network → 192.168.1.0/24  
 - User Network → 192.168.2.0/24  
 
----
+----
 
 ## ⚙️ Configuration Summary
 - Switch assigned IP address (VLAN 1)
