@@ -15,7 +15,7 @@ To configure a Cisco Layer 2 switch with basic settings such as hostname, passwo
 ## Tool Used
 Cisco Packet Tracer
 
----
+-------------------------------------------
 
 ## Configuration Overview
 
