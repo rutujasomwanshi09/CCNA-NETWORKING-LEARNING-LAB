@@ -19,7 +19,7 @@ VTP (VLAN Trunking Protocol) is used to manage VLAN configurations across multip
 - Password must match
 - Trunk links required between switches
 
----
+------------------------------
 
 ## 🛠️ Topology Description
 
