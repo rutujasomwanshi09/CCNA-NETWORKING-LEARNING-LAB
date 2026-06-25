@@ -18,7 +18,7 @@ banner motd #THIS TEST SWITCH#
 ### Set Enable Password
 enable password cisco
 
----
+---------------------------------------
 
 ## Console Configuration
 line console 0
