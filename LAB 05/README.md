@@ -18,7 +18,7 @@ To configure VLANs and control traffic over trunk links by allowing and denying 
 
 - PCs are connected to their respective VLANs on both switches
 
----
+-----
 
 ## ⚙️ Configuration Summary
 - VLANs (10, 20, 30, 40, 50) created on both switches
