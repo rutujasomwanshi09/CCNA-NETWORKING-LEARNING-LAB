@@ -30,7 +30,7 @@ exit
 do wr
 
 
-########## SWITCH 2 CONFIG ##########
+########## SWITCH 2 CONFIG #########
 
 enable
 conf t
