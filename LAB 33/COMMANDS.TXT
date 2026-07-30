@@ -1,0 +1,107 @@
+LAB 33
+Configure DHCP Relay Agent on Cisco Multilayer Switch
+
+
+
+######Multilayer Switch Configuration ############
+
+enable
+
+configure terminal
+
+interface GigabitEthernet1/0/1
+no switchport
+ip address 192.168.11.1 255.255.255.0
+no shutdown
+exit
+
+interface GigabitEthernet1/0/2
+no switchport
+ip address 192.168.22.1 255.255.255.0
+exit
+do write
+
+
+
+#### DHCP CONFIG ###
+int gig1/0/2
+ip helper-address 192.168.11.254
+no shutdown
+exit
+
+ip routing
+
+end
+
+write memory
+
+#################################
+DHCP Server Configuration
+#################################
+
+Server IP Address
+-----------------
+
+IP Address : 192.168.11.254
+Subnet Mask : 255.255.255.0
+Gateway : 192.168.11.1
+DNS SERVER - 192.168.11.254
+
+DHCP Pool
+
+Pool Name : HR-DEPT
+
+Default Gateway :
+192.168.22.1
+
+DNS Server :
+192.168.11.254
+
+Start IP :
+192.168.22.11
+
+Subnet Mask :
+255.255.255.0
+
+Maximum Users :
+240
+
+#################################
+PC Configuration
+#################################
+
+Desktop
+
+IP Configuration
+
+Select DHCP
+
+#################################
+Verification Commands
+#################################
+
+show ip interface brief
+
+show running-config
+
+show ip route
+
+show interfaces
+
+ping 192.168.11.254
+
+ipconfig /all
+
+#################################
+Expected Output
+#################################
+
+✔ PCs obtain IP addresses automatically
+
+✔ Default Gateway assigned successfully
+
+✔ DHCP Relay forwards DHCP requests
+
+✔ Clients communicate with DHCP Server
+
+✔ End-to-End Connectivity Successful
