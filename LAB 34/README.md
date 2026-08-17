@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🌐 LAB 34 — STATIC ROUTING CONFIGURATION USING CISCO PACKET TRACER
 
 <p align="center">
@@ -10,7 +10,7 @@
 <p align="center">
 
 ### 🚀 Cisco Packet Tracer | IPv4 | Static Routing
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 </p>
 
@@ -129,7 +129,6 @@ PC3/PC4/PC5
 | Static Route | Route to India LAN |
 
 ### 💻 Commands
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
 
 ```bash
 enable
@@ -196,7 +195,6 @@ write memory
 | Static Route 2 | Route to India LAN |
 
 ### 💻 Commands
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
 
 ```bash
 enable
@@ -227,7 +225,7 @@ write memory
 ### 🧠 Static Routes
 
 | **Destination Network** | **Next Hop** | **Purpose** |
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 |---|---|---|
 | `192.168.10.0/24` | `10.10.10.1` | Kenya LAN via KE-R1 |
 | `192.168.20.0/24` | `20.20.20.2` | India LAN via PAK-R1 |
@@ -263,7 +261,7 @@ write memory
 | Static Route 2 | Route to India LAN |
 
 ### 💻 Commands
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 ```bash
 enable
@@ -294,7 +292,7 @@ write memory
 ### 🧠 Static Routes
 
 | **Destination Network** | **Next Hop** | **Purpose** |
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 |---|---|---|
 | `192.168.10.0/24` | `20.20.20.1` | Kenya LAN via ENG-R1 |
 | `192.168.20.0/24` | `30.30.30.2` | India LAN via INDIA-R1 |
@@ -328,7 +326,7 @@ write memory
 | Static Route | Route to Kenya LAN |
 
 ### 💻 Commands
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 ```bash
 enable
@@ -358,7 +356,7 @@ write memory
 ### 🧠 Static Route
 
 | **Destination Network** | **Next Hop** | **Purpose** |
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 |---|---|---|
 | `192.168.10.0/24` | `30.30.30.1` | Kenya LAN via PAK-R1 |
 
@@ -436,7 +434,7 @@ write memory
 | `tracert <IP>` | PC | Trace packet path |
 
 ### 🟢 Interface Check
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 ```bash
 show ip interface brief
@@ -453,7 +451,7 @@ up         up
 ### 🟢 Check Routing Table
 =======
 ### 🟢 Routing Table Check
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 ```bash
 show ip route
@@ -463,7 +461,7 @@ show ip route
 Static routes are identified by:
 =======
 Static routes are marked with:
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 ```text
 S
@@ -481,7 +479,7 @@ From **PC0 → Desktop → Command Prompt**:
 # 📡 6. CONNECTIVITY TEST
 
 ### From PC0 → PC5
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
+
 
 ```bash
 ping 192.168.20.30
@@ -512,7 +510,6 @@ PC0 → KE-R1 → ENG-R1 → PAK-R1 → INDIA-R1 → PC5
 ```
 
 ### Trace the Path
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
 
 ```bash
 tracert 192.168.20.30
@@ -646,7 +643,6 @@ ping 192.168.20.30
 tracert 192.168.20.30
 ```
 
->>>>>>> 41b09168f856ede31314ab50d943146e93a0eaec
 <p align="center">
 
 ### ⭐ LAB 34 — STATIC ROUTING ⭐
