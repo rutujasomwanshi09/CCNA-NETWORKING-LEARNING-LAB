@@ -1,23 +1,6 @@
-# 💻 LAB 34 — STATIC ROUTING COMMANDS
+# LAB 34 — STATIC ROUTING COMMANDS
 
-> Complete command reference. Each section clearly shows **which router**, **what was configured**, and **which commands were used**.
-
----
-
-# 🇰🇪 1. KE-R1
-
-### 📌 Configuration
-
-| Command | Purpose |
-|---|---|
-| `interface g0/0` | Select Kenya LAN interface |
-| `ip address 192.168.10.1 255.255.255.0` | Configure Kenya gateway |
-| `interface g0/1` | Select link to ENG-R1 |
-| `ip address 10.10.10.1 255.255.255.252` | Configure router-to-router IP |
-| `ip route 192.168.20.0 ...` | Add route to India LAN |
-| `write memory` | Save configuration |
-
-### 💻 Commands
+## KE-R1
 
 ```bash
 enable
@@ -39,23 +22,7 @@ end
 write memory
 ```
 
----
-
-# 🇬🇧 2. ENG-R1
-
-### 📌 Configuration
-
-| Command | Purpose |
-|---|---|
-| `interface g0/0` | Link to KE-R1 |
-| `ip address 10.10.10.2 ...` | Configure G0/0 |
-| `interface g0/1` | Link to PAK-R1 |
-| `ip address 20.20.20.1 ...` | Configure G0/1 |
-| Static route to `192.168.10.0/24` | Reach Kenya LAN |
-| Static route to `192.168.20.0/24` | Reach India LAN |
-| `write memory` | Save configuration |
-
-### 💻 Commands
+## ENG-R1
 
 ```bash
 enable
@@ -78,23 +45,7 @@ end
 write memory
 ```
 
----
-
-# 🇵🇰 3. PAK-R1
-
-### 📌 Configuration
-
-| Command | Purpose |
-|---|---|
-| `interface g0/0` | Link to ENG-R1 |
-| `ip address 20.20.20.2 ...` | Configure G0/0 |
-| `interface g0/1` | Link to INDIA-R1 |
-| `ip address 30.30.30.1 ...` | Configure G0/1 |
-| Static route to `192.168.10.0/24` | Reach Kenya LAN |
-| Static route to `192.168.20.0/24` | Reach India LAN |
-| `write memory` | Save configuration |
-
-### 💻 Commands
+## PAK-R1
 
 ```bash
 enable
@@ -117,22 +68,7 @@ end
 write memory
 ```
 
----
-
-# 🇮🇳 4. INDIA-R1
-
-### 📌 Configuration
-
-| Command | Purpose |
-|---|---|
-| `interface g0/0` | Link to PAK-R1 |
-| `ip address 30.30.30.2 ...` | Configure G0/0 |
-| `interface g0/1` | Select India LAN |
-| `ip address 192.168.20.1 ...` | Configure India gateway |
-| Static route to `192.168.10.0/24` | Reach Kenya LAN |
-| `write memory` | Save configuration |
-
-### 💻 Commands
+## INDIA-R1
 
 ```bash
 enable
@@ -154,124 +90,61 @@ end
 write memory
 ```
 
----
-
-# 💻 5. PC CONFIGURATION
-
-## 🇰🇪 Kenya LAN
-
-| PC | IP | Mask | Gateway |
-|---|---|---|---|
-| PC0 | `192.168.10.10` | `255.255.255.0` | `192.168.10.1` |
-| PC1 | `192.168.10.20` | `255.255.255.0` | `192.168.10.1` |
-| PC2 | `192.168.10.30` | `255.255.255.0` | `192.168.10.1` |
-
-## 🇮🇳 India LAN
-
-| PC | IP | Mask | Gateway |
-|---|---|---|---|
-| PC3 | `192.168.20.10` | `255.255.255.0` | `192.168.20.1` |
-| PC4 | `192.168.20.20` | `255.255.255.0` | `192.168.20.1` |
-| PC5 | `192.168.20.30` | `255.255.255.0` | `192.168.20.1` |
-
-**Packet Tracer:** `PC → Desktop → IP Configuration`
-
----
-
-# 🔍 6. VERIFICATION COMMANDS
-
-| Command | Run On | What It Checks |
-|---|---|---|
-| `show ip interface brief` | All routers | IP + interface status |
-| `show ip route` | All routers | Routing table |
-| `show running-config` | All routers | Current configuration |
-| `ping <IP>` | Router / PC | Connectivity |
-| `tracert <IP>` | PC | Packet path |
-
-### Interface Check
+## VERIFICATION — ALL ROUTERS
 
 ```bash
 show ip interface brief
+show ip route
+show running-config
 ```
 
-Expected working interface:
+## PING — ROUTERS
 
-```text
-Status       Protocol
-up           up
-```
-
-### Routing Table
+### KE-R1
 
 ```bash
-show ip route
+ping 10.10.10.2
+ping 20.20.20.2
+ping 30.30.30.2
+ping 192.168.20.1
 ```
 
-Static routes are marked:
+### ENG-R1
 
-```text
-S
+```bash
+ping 10.10.10.1
+ping 20.20.20.2
+ping 30.30.30.1
+ping 192.168.20.1
 ```
 
-Connected routes:
+### PAK-R1
 
-```text
-C
+```bash
+ping 20.20.20.1
+ping 30.30.30.2
+ping 192.168.20.1
+ping 192.168.10.1
 ```
 
-Local routes:
+### INDIA-R1
 
-```text
-L
+```bash
+ping 30.30.30.1
+ping 20.20.20.2
+ping 10.10.10.1
+ping 192.168.10.1
 ```
 
----
+## SAVE CONFIGURATION — ALL ROUTERS
 
-# 📡 7. CONNECTIVITY TEST
+```bash
+write memory
+```
 
-### PC0 → PC5
-
-On **PC0 → Desktop → Command Prompt**:
+## PC CONNECTIVITY TEST
 
 ```text
 ping 192.168.20.30
-```
-
-### Trace Path
-
-```text
 tracert 192.168.20.30
 ```
-
-Expected logical path:
-
-```text
-PC0
- ↓
-KE-R1
- ↓
-ENG-R1
- ↓
-PAK-R1
- ↓
-INDIA-R1
- ↓
-PC5
-```
-
----
-
-# 📌 8. STATIC ROUTE QUICK REFERENCE
-
-| Router | Destination | Next Hop |
-|---|---|---|
-| KE-R1 | `192.168.20.0/24` | `10.10.10.2` |
-| ENG-R1 | `192.168.10.0/24` | `10.10.10.1` |
-| ENG-R1 | `192.168.20.0/24` | `20.20.20.2` |
-| PAK-R1 | `192.168.10.0/24` | `20.20.20.1` |
-| PAK-R1 | `192.168.20.0/24` | `30.30.30.2` |
-| INDIA-R1 | `192.168.10.0/24` | `30.30.30.1` |
-
----
-
-
