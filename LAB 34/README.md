@@ -1,34 +1,61 @@
-LAB 34 - Static Routing Configuration Using Cisco Packet Tracer
+🌐 LAB 34 — Static Routing Configuration
 
-📌 Objective
+<p align="center">
+  <b>🚀 Cisco Packet Tracer | Static Routing | IPv4 Networking</b>
+</p>
 
-Configure Static Routing between two LAN networks:
+<p align="center">
+  <img src="https://img.shields.io/badge/Cisco-Packet%20Tracer-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white">
+  <img src="https://img.shields.io/badge/Networking-Static%20Routing-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/IPv4-Configured-green?style=for-the-badge">
+</p>
 
-🇰🇪 Kenya LAN → 192.168.10.0/24
+🎯 Objective
 
-🇮🇳 India LAN → 192.168.20.0/24
+Configure Static Routing between two LAN networks using four Cisco routers.
 
-Traffic path:
+🌍 Network
 
-Kenya LAN
-   ↓
-KE-R1
-   ↓
-ENG-R1
-   ↓
-PAK-R1
-   ↓
-INDIA-R1
-   ↓
-India LAN
+📡 Network Address
 
-🌐 IP Addressing
+🇰🇪 Kenya LAN
 
-Device
+192.168.10.0/24
+
+🇮🇳 India LAN
+
+192.168.20.0/24
+
+🔄 Packet Path
+
+🇰🇪 Kenya LAN
+      │
+      ▼
+   KE-R1
+      │ 10.10.10.0/30
+      ▼
+   ENG-R1
+      │ 20.20.20.0/30
+      ▼
+   PAK-R1
+      │ 30.30.30.0/30
+      ▼
+  INDIA-R1
+      │
+      ▼
+🇮🇳 India LAN
+
+🌐 1. IP Addressing
+
+🖥️ Router Interfaces
+
+Router
 
 Interface
 
 IP Address
+
+Network
 
 KE-R1
 
@@ -36,11 +63,15 @@ G0/0
 
 192.168.10.1/24
 
+Kenya LAN
+
 KE-R1
 
 G0/1
 
 10.10.10.1/30
+
+KE ↔ ENG
 
 ENG-R1
 
@@ -48,11 +79,15 @@ G0/0
 
 10.10.10.2/30
 
+KE ↔ ENG
+
 ENG-R1
 
 G0/1
 
 20.20.20.1/30
+
+ENG ↔ PAK
 
 PAK-R1
 
@@ -60,11 +95,15 @@ G0/0
 
 20.20.20.2/30
 
+ENG ↔ PAK
+
 PAK-R1
 
 G0/1
 
 30.30.30.1/30
+
+PAK ↔ INDIA
 
 INDIA-R1
 
@@ -72,25 +111,29 @@ G0/0
 
 30.30.30.2/30
 
+PAK ↔ INDIA
+
 INDIA-R1
 
 G0/1
 
 192.168.20.1/24
 
-⚙️ Router Configuration
+India LAN
 
-1. KE-R1 Configuration
+⚙️ 2. Router Configuration
 
-What we configured:
+🇰🇪 KE-R1
 
-G0/0 → Kenya LAN IP
+🔧 Configuration
 
-G0/1 → Link to ENG-R1
+G0/0 → Kenya LAN
+
+G0/1 → ENG-R1 connection
 
 Static route → India LAN
 
-Commands:
+💻 Commands
 
 enable
 configure terminal
@@ -110,17 +153,16 @@ ip route 192.168.20.0 255.255.255.0 10.10.10.2
 end
 write memory
 
-Static Route Meaning:
+🧠 Static Route
 
-192.168.20.0/24
-        ↓
-Next Hop: 10.10.10.2
+Destination : 192.168.20.0/24
+Next Hop    : 10.10.10.2
 
-KE-R1 ko bataya ki India LAN tak packets ENG-R1 ke through bhejne hain.
+➡️ Meaning: India LAN tak packet ENG-R1 ke through bhejna hai.
 
-2. ENG-R1 Configuration
+🇬🇧 ENG-R1
 
-What we configured:
+🔧 Configuration
 
 G0/0 → KE-R1 connection
 
@@ -130,7 +172,7 @@ Route → Kenya LAN
 
 Route → India LAN
 
-Commands:
+💻 Commands
 
 enable
 configure terminal
@@ -151,16 +193,16 @@ ip route 192.168.20.0 255.255.255.0 20.20.20.2
 end
 write memory
 
-Static Routes:
+🧠 Routes
 
 192.168.10.0/24 → 10.10.10.1
 192.168.20.0/24 → 20.20.20.2
 
-ENG-R1 ko dono LAN networks ka path pata hai.
+➡️ Meaning: ENG-R1 ko dono LAN networks ka path pata hai.
 
-3. PAK-R1 Configuration
+🇵🇰 PAK-R1
 
-What we configured:
+🔧 Configuration
 
 G0/0 → ENG-R1 connection
 
@@ -170,7 +212,7 @@ Route → Kenya LAN
 
 Route → India LAN
 
-Commands:
+💻 Commands
 
 enable
 configure terminal
@@ -191,16 +233,16 @@ ip route 192.168.20.0 255.255.255.0 30.30.30.2
 end
 write memory
 
-Static Routes:
+🧠 Routes
 
 192.168.10.0/24 → 20.20.20.1
 192.168.20.0/24 → 30.30.30.2
 
-PAK-R1 ko Kenya aur India dono LANs ka route diya gaya hai.
+➡️ Meaning: PAK-R1 ko Kenya aur India dono LANs ka route diya gaya hai.
 
-4. INDIA-R1 Configuration
+🇮🇳 INDIA-R1
 
-What we configured:
+🔧 Configuration
 
 G0/0 → PAK-R1 connection
 
@@ -208,7 +250,7 @@ G0/1 → India LAN
 
 Static route → Kenya LAN
 
-Commands:
+💻 Commands
 
 enable
 configure terminal
@@ -228,27 +270,30 @@ ip route 192.168.10.0 255.255.255.0 30.30.30.1
 end
 write memory
 
-Static Route Meaning:
+🧠 Static Route
 
-192.168.10.0/24
-        ↓
-Next Hop: 30.30.30.1
+Destination : 192.168.10.0/24
+Next Hop    : 30.30.30.1
 
-INDIA-R1 ko bataya ki Kenya LAN tak packets PAK-R1 ke through bhejne hain.
+➡️ Meaning: Kenya LAN tak packet PAK-R1 ke through bhejna hai.
 
-💻 PC Configuration
+💻 3. PC Configuration
 
-🇰🇪 Kenya PCs
+🇰🇪 Kenya LAN
 
 PC
 
 IP Address
 
-Gateway
+Subnet Mask
+
+Default Gateway
 
 PC0
 
 192.168.10.10
+
+255.255.255.0
 
 192.168.10.1
 
@@ -256,33 +301,35 @@ PC1
 
 192.168.10.20
 
+255.255.255.0
+
 192.168.10.1
 
 PC2
 
 192.168.10.30
 
-192.168.10.1
-
-Subnet Mask:
-
 255.255.255.0
 
-Configure from:
+192.168.10.1
 
-PC → Desktop → IP Configuration
+Packet Tracer: PC → Desktop → IP Configuration
 
-🇮🇳 India PCs
+🇮🇳 India LAN
 
 PC
 
 IP Address
 
-Gateway
+Subnet Mask
+
+Default Gateway
 
 PC3
 
 192.168.20.10
+
+255.255.255.0
 
 192.168.20.1
 
@@ -290,72 +337,74 @@ PC4
 
 192.168.20.20
 
+255.255.255.0
+
 192.168.20.1
 
 PC5
 
 192.168.20.30
 
-192.168.20.1
-
-Subnet Mask:
-
 255.255.255.0
 
-Configure from:
+192.168.20.1
 
-PC → Desktop → IP Configuration
+Packet Tracer: PC → Desktop → IP Configuration
 
-🔍 Verification
+🔍 4. Verification
 
-Check Interfaces
+🟢 Check Interface Status
 
 Run on every router:
 
 show ip interface brief
 
-Interfaces should show:
+Expected:
 
-Status     Protocol
-up         up
+Status    Protocol
+up        up
 
-Check Routing Table
+🟢 Check Routing Table
 
 show ip route
 
-Static routes are shown with:
+Static routes appear with:
 
 S
 
 Example:
 
-S 192.168.20.0/24 via 10.10.10.2
+S 192.168.20.0/24 [1/0] via 10.10.10.2
 
-Test Router Connectivity
-
-ping 10.10.10.2
-ping 20.20.20.2
-ping 30.30.30.2
-
-End-to-End Test
+🟢 Test Connectivity
 
 From PC0:
 
 ping 192.168.20.30
 
-Expected:
+Expected path:
 
-PC0 → KE-R1 → ENG-R1 → PAK-R1 → INDIA-R1 → PC5
+PC0
+ ↓
+KE-R1
+ ↓
+ENG-R1
+ ↓
+PAK-R1
+ ↓
+INDIA-R1
+ ↓
+PC5
 
-Trace the Path
+🟢 Trace the Packet Path
 
 From PC0:
 
 tracert 192.168.20.30
 
-This shows the routers through which the packet travels.
+This verifies the routers through which the packet travels.
 
-🧠 Important Commands
+🧰 5. Important Commands
 
 Command
 
@@ -363,11 +412,11 @@ Purpose
 
 enable
 
-Privileged mode
+Enter privileged mode
 
 configure terminal
 
-Configuration mode
+Enter configuration mode
 
 interface g0/0
 
@@ -405,33 +454,31 @@ write memory
 
 Save configuration
 
-🧠 Key Concepts
+🧠 6. Key Concepts
 
-Static Routing
+Static Routing • IPv4 • Subnetting • /24 LAN • /30 Point-to-Point • Next-Hop Routing • Default Gateway • Routing Table • Ping • Traceroute • Cisco IOS
 
-IPv4 Addressing
+📌 7. Static Routing Summary
 
-/24 LAN Networks
+KE-R1
+192.168.20.0/24 → 10.10.10.2
 
-/30 Point-to-Point Networks
+ENG-R1
+192.168.10.0/24 → 10.10.10.1
+192.168.20.0/24 → 20.20.20.2
 
-Next-Hop Routing
+PAK-R1
+192.168.10.0/24 → 20.20.20.1
+192.168.20.0/24 → 30.30.30.2
 
-Default Gateway
-
-Routing Table
-
-Ping
-
-Traceroute
-
-Cisco IOS CLI
+INDIA-R1
+192.168.10.0/24 → 30.30.30.1
 
 ✅ Result
 
-Static routing was configured successfully between the Kenya LAN (192.168.10.0/24) and India LAN (192.168.20.0/24) through ENG-R1 and PAK-R1.
+Static Routing successfully configured between Kenya LAN and India LAN using Cisco Packet Tracer.
 
-Connectivity can be verified using:
+End-to-end connectivity verified using:
 
 ping 192.168.20.30
 
