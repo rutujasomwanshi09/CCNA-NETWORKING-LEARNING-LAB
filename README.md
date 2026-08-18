@@ -24,19 +24,19 @@
 | 📌 Metric | 📊 Progress |
 |---|---:|
 | 🎯 Total Labs | **75** |
-| ✅ Completed Labs | **<!-- COMPLETED_LABS -->35** |
-| ⏳ Remaining Labs | **<!-- REMAINING_LABS -->40** |
-| 📈 Overall Progress | **<!-- PROGRESS_PERCENT -->46.67%** |
+| ✅ Completed Labs | **<!-- COMPLETED_LABS -->41
+| ⏳ Remaining Labs | **<!-- REMAINING_LABS -->34
+| 📈 Overall Progress | **<!-- PROGRESS_PERCENT -->54%
 | 💻 Platform | **Cisco Packet Tracer** |
 | 📚 Course Status | **In Progress 🚀** |
 
 ### 🔥 Overall Progress
 
-**<!-- COMPLETED_LABS -->35 / 75 Labs Completed**
+**<!-- COMPLETED_LABS -->41
 
 <!-- PROGRESS_BAR -->
 
-### 📈 <!-- PROGRESS_PERCENT -->46.67% COMPLETE
+### 📈 <!-- PROGRESS_PERCENT -->54%
 
 > 🎯 **Current Position:** Lab <!-- CURRENT_LAB -->35  
 > 🚀 **Next Target:** Lab <!-- NEXT_LAB -->36  
@@ -46,7 +46,7 @@
 
 # 🗂️ COMPLETED LABS
 
-Currently, **<!-- COMPLETED_LABS -->35 out of 75 labs** have been completed.
+Currently, **<!-- COMPLETED_LABS -->41
 
 <!-- LAB_TABLE_START -->
 
@@ -101,7 +101,7 @@ Currently, **<!-- COMPLETED_LABS -->35 out of 75 labs** have been completed.
 
 ### 🎯 Remaining
 
-**<!-- REMAINING_LABS -->40 Labs Remaining**
+**<!-- REMAINING_LABS -->34
 
 <!-- PROGRESS_BAR_DETAILED -->
 
