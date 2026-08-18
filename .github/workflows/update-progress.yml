@@ -1,0 +1,49 @@
+name: Update CCNA Progress
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Calculate CCNA progress
+        shell: bash
+        run: |
+
+          TOTAL_LABS=75
+
+          COMPLETED_LABS=$(find . -maxdepth 1 -type d -name "LAB *" | wc -l)
+
+          REMAINING_LABS=$((TOTAL_LABS - COMPLETED_LABS))
+
+          PROGRESS=$((COMPLETED_LABS * 100 / TOTAL_LABS))
+
+          echo "Completed Labs: $COMPLETED_LABS"
+          echo "Remaining Labs: $REMAINING_LABS"
+          echo "Progress: $PROGRESS%"
+
+          sed -i "s/<!-- COMPLETED_LABS -->.*/<!-- COMPLETED_LABS -->$COMPLETED_LABS/" README.md
+          sed -i "s/<!-- REMAINING_LABS -->.*/<!-- REMAINING_LABS -->$REMAINING_LABS/" README.md
+          sed -i "s/<!-- PROGRESS_PERCENT -->.*/<!-- PROGRESS_PERCENT -->$PROGRESS%/" README.md
+
+      - name: Commit updated README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+
+          git diff --cached --quiet || git commit -m "docs: update CCNA progress"
+
+          git push
