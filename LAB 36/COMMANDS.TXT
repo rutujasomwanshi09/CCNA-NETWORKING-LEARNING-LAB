@@ -1,0 +1,46 @@
+LAB 36 - DEFAULT STATIC ROUTING WITH BACKUP ROUTE
+
+
+## R1 - PRIMARY DEFAULT ROUTE
+enable
+configure terminal
+ip route 0.0.0.0 0.0.0.0 200.100.50.2
+
+
+## R1 - FLOATING STATIC BACKUP ROUTE
+
+ip route 0.0.0.0 0.0.0.0 200.100.50.6 130
+
+
+## ISP-1 - RETURN ROUTE TO LAN
+
+ip route 192.168.1.0 255.255.255.0 200.100.50.1
+
+
+## ISP-2 - RETURN ROUTE TO LAN
+
+ip route 192.168.1.0 255.255.255.0 200.100.50.5
+
+
+## VERIFICATION - R1 / ISP-1 / ISP-2
+
+show ip route
+show ip route static
+show ip interface brief
+
+
+CONNECTIVITY TEST
+
+ping 8.8.8.8
+tracert 8.8.8.8(google.com)
+
+
+FAILOVER TEST - R1
+
+interface gigabitEthernet 0/1
+shutdown
+
+show ip route
+
+interface gigabitEthernet 0/1
+no shutdown
