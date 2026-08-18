@@ -1,0 +1,161 @@
+LAB 35 - FLOATING STATIC ROUTING CONFIGURATION USING CISCO PACKET TRACER 
+=================================
+
+## CONFIGURE ROUTER - KE-R1
+
+
+enable
+configure terminal
+
+interface g0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+
+interface g0/1
+ip address 10.10.10.1 255.255.255.252
+no shutdown
+exit
+
+interface g0/2
+ip address 40.40.40.1 255.255.255.252
+no shutdown
+exit
+
+ip route 192.168.20.0 255.255.255.0 g0/1
+ip route 192.168.20.0 255.255.255.0 40.40.40.2 130
+
+end
+write memory
+
+
+## CONFIGURE ROUTER- ENG-R1
+
+
+enable
+configure terminal
+
+interface g0/0
+ip address 10.10.10.2 255.255.255.252
+no shutdown
+exit
+
+interface g0/1
+ip address 20.20.20.1 255.255.255.252
+no shutdown
+exit
+
+ip route 192.168.20.0 255.255.255.0 g0/1
+
+end
+write memory
+
+
+## CONFIGURE ROUTER - PAK-R1
+
+enable
+configure terminal
+
+interface g0/0
+ip address 20.20.20.2 255.255.255.252
+no shutdown
+exit
+
+interface g0/1
+ip address 30.30.30.1 255.255.255.252
+no shutdown
+exit
+
+ip route 192.168.20.0 255.255.255.0 g0/1
+
+end
+write memory
+
+
+## CONFIGURE ROUTER - AUS-R1
+======
+
+enable
+configure terminal
+
+interface g0/0
+ip address 40.40.40.2 255.255.255.252
+no shutdown
+exit
+
+interface g0/1
+ip address 50.50.50.1 255.255.255.252
+no shutdown
+exit
+
+ip route 192.168.20.0 255.255.255.0 50.50.50.2
+ip route 192.168.10.0 255.255.255.0 40.40.40.1
+
+end
+write memory
+
+
+## CONFIGURE ROUTER INDIA-R1
+========
+
+enable
+configure terminal
+
+interface g0/0
+ip address 30.30.30.2 255.255.255.252
+no shutdown
+exit
+
+interface g0/1
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+exit
+
+interface g0/2
+ip address 50.50.50.2 255.255.255.252
+no shutdown
+exit
+
+ip route 192.168.10.0 255.255.255.0 30.30.30.1
+ip route 192.168.10.0 255.255.255.0 50.50.50.1 130
+
+end
+write memory
+
+
+## VERIFICATION
+============
+
+show ip interface brief
+show ip route
+show running-config
+
+ping 192.168.20.30
+traceroute 192.168.20.30
+
+
+## FLOATING ROUTE TEST
+===================
+
+KE-R1:
+
+interface g0/1
+shutdown
+
+show ip route
+ping 192.168.20.30
+
+interface g0/1
+no shutdown
+
+
+INDIA-R1:
+
+interface g0/0
+shutdown
+
+show ip route
+ping 192.168.10.10
+
+interface g0/0
+no shutdown
