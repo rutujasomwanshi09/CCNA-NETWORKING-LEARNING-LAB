@@ -2,7 +2,16 @@
 
 <p align="center">
 
+
 ### 🚀 Cisco CCNA Practical Learning & Lab Documentation
+
+| 📌 Metric | 📈 Status |
+|---|---:|
+| 🎯 Total Labs | 75 |
+| ✅ Completed Labs | <!-- COMPLETED_LABS -->41
+| ⏳ Remaining Labs | <!-- REMAINING_LABS -->34
+| 📊 Progress | <!-- PROGRESS_PERCENT -->54%
+
 
 **Cisco Packet Tracer | Networking | Routing | Switching | Network Security**
 
@@ -296,9 +305,9 @@ Each lab README contains:
 Commands ko device-wise organize kiya gaya hai.
 
 ```text
-================================================
+
                 ROUTER R1
-================================================
+
 
 enable
 configure terminal
